@@ -1,22 +1,22 @@
 class Solution {
-    public static int sumOfDigits(int n) {
-        int sum = 0;
-        while (n > 0) {
-            sum += n % 10; // Add the last digit to the sum
-            n /= 10;      // Remove the last digit
-        }
-        return sum;
-    }
-    public int maxSum(int[] nums) {
-        int result = -1;
-
-        for(int i = 0; i < nums.length; i++) {
-            for(int j = i + 1; j < nums.length - 1; j++) {
-                if(sumOfDigits(nums[i]) == sumOfDigits(nums[j])) {
-                    result = Math.max(result, nums[j] + nums[i]);
-                }
+    
+    public static int roundToMultiple(int n) {
+        while(n % 10 != 0) {
+            if(n % 10 >=5) {
+                n ++;
+            } else {
+                n--;
             }
         }
-        return result;
+        return n;
+    } 
+
+    public static int accountBalanceAfterPurchase(int purchaseAmount) {
+        return Math.abs( 100 - roundToMultiple(purchaseAmount) );
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println( roundToMultiple(11) );
     }
 }
