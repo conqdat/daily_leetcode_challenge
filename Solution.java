@@ -1,22 +1,29 @@
-class Solution {
-    public static int sumOfDigits(int n) {
-        int sum = 0;
-        while (n > 0) {
-            sum += n % 10; // Add the last digit to the sum
-            n /= 10;      // Remove the last digit
-        }
-        return sum;
-    }
-    public int maxSum(int[] nums) {
-        int result = -1;
+import java.util.Arrays;
 
-        for(int i = 0; i < nums.length; i++) {
-            for(int j = i + 1; j < nums.length - 1; j++) {
-                if(sumOfDigits(nums[i]) == sumOfDigits(nums[j])) {
-                    result = Math.max(result, nums[j] + nums[i]);
-                }
+class Solution {
+
+    public static int[] twoSum(int[] numbers, int target) {
+        int[] result = new int[2];
+        int left = 0;
+        int right = numbers.length - 1;
+
+        while(numbers[left] + numbers[right] != target) {
+            if(numbers[left] + numbers[right] < target) {
+                left++;
+            }
+            else {
+                right--;
             }
         }
+        result[0] = left + 1;
+        result[1] = right + 1;
+
         return result;
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = { 2,7,11,15 };
+        int target = 9;
+        System.out.println( twoSum(numbers, target) );
     }
 }
