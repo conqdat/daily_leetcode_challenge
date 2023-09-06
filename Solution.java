@@ -2,28 +2,18 @@ import java.util.Arrays;
 
 class Solution {
 
-    public static int[] twoSum(int[] numbers, int target) {
-        int[] result = new int[2];
-        int left = 0;
-        int right = numbers.length - 1;
+    public static String reverseWords(String s) {
+        String[] charArr = s.split(" ");
 
-        while(numbers[left] + numbers[right] != target) {
-            if(numbers[left] + numbers[right] < target) {
-                left++;
-            }
-            else {
-                right--;
-            }
+        for(int i = 0; i < charArr.length; i++) {
+            charArr[i] = new StringBuffer(charArr[i]).reverse().toString();
         }
-        result[0] = left + 1;
-        result[1] = right + 1;
 
-        return result;
+        return String.join(" ", charArr);
     }
 
     public static void main(String[] args) {
-        int[] numbers = { 2,7,11,15 };
-        int target = 9;
-        System.out.println( twoSum(numbers, target) );
+        String s = "Let's take LeetCode contest";
+        System.out.println( reverseWords(s) );
     }
 }
