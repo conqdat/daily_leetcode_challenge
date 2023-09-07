@@ -1,19 +1,21 @@
-import java.util.Arrays;
 
 class Solution {
 
-    public static String reverseWords(String s) {
-        String[] charArr = s.split(" ");
-
-        for(int i = 0; i < charArr.length; i++) {
-            charArr[i] = new StringBuffer(charArr[i]).reverse().toString();
+    public static String finalString(String s) {
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) != 'i') {
+                sb.append(s.charAt(i));
+            } else {
+                sb = sb.reverse();
+            }
         }
-
-        return String.join(" ", charArr);
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        String s = "Let's take LeetCode contest";
-        System.out.println( reverseWords(s) );
+        String s = "string";
+        System.out.println( finalString(s) );
     }
 }
