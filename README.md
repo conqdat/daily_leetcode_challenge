@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[2810. Faulty Keyboard](https://leetcode.com/problems/faulty-keyboard).
+[401. Binary Watch](https://leetcode.com/problems/binary-watch).

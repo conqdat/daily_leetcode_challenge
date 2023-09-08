@@ -1,21 +1,18 @@
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
 
-    public static String finalString(String s) {
-        StringBuilder sb = new StringBuilder();
-        
-        for(int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) != 'i') {
-                sb.append(s.charAt(i));
-            } else {
-                sb = sb.reverse();
-            }
-        }
-        return sb.toString();
+    public static List<String> readBinaryWatch(int turnedOn) {
+        List<String> result = new ArrayList<>();
+        for (int h = 0; h < 12; h++)
+            for (int m = 0; m < 60; m++)
+                if (Integer.bitCount(h * 64 + m) == turnedOn)
+                    result.add(String.format("%d:%02d", h, m));
+        return result;
     }
-
     public static void main(String[] args) {
-        String s = "string";
-        System.out.println( finalString(s) );
+        int turnedOn = 1;
+        System.out.println( readBinaryWatch(turnedOn) );
     }
 }
