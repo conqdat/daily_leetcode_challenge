@@ -3,16 +3,22 @@ import java.util.List;
 
 class Solution {
 
-    public static List<String> readBinaryWatch(int turnedOn) {
-        List<String> result = new ArrayList<>();
-        for (int h = 0; h < 12; h++)
-            for (int m = 0; m < 60; m++)
-                if (Integer.bitCount(h * 64 + m) == turnedOn)
-                    result.add(String.format("%d:%02d", h, m));
-        return result;
+    public static int maxSubArray(int[] nums) {
+        int max = nums[0];
+        int sum = 0;
+        for(int i=0; i<nums.length; i++){
+            sum += nums[i];
+            if(sum > max){
+                max = sum;
+            }
+            if(sum < 0){
+                sum = 0;
+            }
+        }
+        return max;
     }
     public static void main(String[] args) {
-        int turnedOn = 1;
-        System.out.println( readBinaryWatch(turnedOn) );
+        int[] nums = new int[]{-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println( maxSubArray(nums) );
     }
 }
