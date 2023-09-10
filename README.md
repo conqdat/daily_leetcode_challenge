@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray).
+[485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones).
