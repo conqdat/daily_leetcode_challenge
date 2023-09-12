@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,24 +8,31 @@ import java.util.Map;
 
 class Solution {
 
-    public static int[] sortedSquares(int[] nums) {
-        for(int i = 0; i < nums.length; i++) {
-            nums[i] = nums[i] * nums[i];
+    public static void duplicateZeros(int[] arr) {
+        int[] temp = new int[arr.length];
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (j < arr.length) {
+                temp[j] = arr[i];
+                if (arr[i] == 0) {
+                    j++;
+                    if (j < arr.length) {
+                        temp[j] = arr[i];
+                    }
+                }
+                j++;
+            }
         }
-        int[] sortedArray = sortIntArray(nums);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = temp[i];
+        }
 
-        System.out.println( Arrays.toString(sortedArray) );
-        return sortedArray;
-    }
-    private static int[] sortIntArray(int[] nums) {
-        int[] sortedArray = nums.clone();
-        Arrays.sort(sortedArray);
-        return sortedArray;
+        System.out.println( Arrays.toString(arr) );
     }
 
 
     public static void main(String[] args) {
-        int[] nums = new int[]{ -7,-3,2,3,11 };
-        System.out.println( sortedSquares(nums) );
+        int[] nums = new int[]{ -1,0,2,3,0,4,5,0 };
+        duplicateZeros(nums);
     }
 }

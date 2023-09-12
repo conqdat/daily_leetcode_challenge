@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones).
+[1089. Duplicate Zeros](https://leetcode.com/problems/duplicate-zeros).
