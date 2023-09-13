@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[2815. Max Pair Sum in an Array](https://leetcode.com/problems/max-pair-sum-in-an-array/).
+[238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/).

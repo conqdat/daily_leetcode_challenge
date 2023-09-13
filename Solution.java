@@ -1,22 +1,47 @@
-class Solution {
-    public static int sumOfDigits(int n) {
-        int sum = 0;
-        while (n > 0) {
-            sum += n % 10; // Add the last digit to the sum
-            n /= 10;      // Remove the last digit
-        }
-        return sum;
-    }
-    public int maxSum(int[] nums) {
-        int result = -1;
+import java.util.*;
 
-        for(int i = 0; i < nums.length; i++) {
-            for(int j = i + 1; j < nums.length - 1; j++) {
-                if(sumOfDigits(nums[i]) == sumOfDigits(nums[j])) {
-                    result = Math.max(result, nums[j] + nums[i]);
-                }
+class Solution {
+    public static int[] productExceptSelf(int[] nums) {
+        int[] ans = new int[nums.length];
+        int product = 1;
+        boolean isZero = false;
+        int zeroIndex = -1;
+        int zeroCount = 0;
+
+        //calculating the product of all number
+        for(int i = 0; i < ans.length; i++) {
+            if(nums[i]==0) {
+                zeroIndex = i;
+                isZero = true;
+                zeroCount++;
+                continue;
             }
+            product*=nums[i];
         }
-        return result;
+        //if zero count is more than 1 then product of all  the product of all the elements of nums except nums[i] will be 0
+        if(zeroCount > 1) {
+            Arrays.fill(ans,0);
+            System.out.println( Arrays.toString(ans) );
+            return ans;
+        }
+        //if one zero is present then the product of all the elements of nums except nums[i] will be 0 excpet  where there is the index element 0 it will be the product 
+        if(isZero) {
+            Arrays.fill(ans,0);
+            ans[zeroIndex] = product;
+            System.out.println( Arrays.toString(ans) );
+            return ans;
+        }
+
+        for(int i = 0; i < ans.length; i++) {
+            ans[i] = product / nums[i];
+        }  
+      
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = { 0,4,0 };
+
+        System.out.println( productExceptSelf(nums) );
     }
 }
