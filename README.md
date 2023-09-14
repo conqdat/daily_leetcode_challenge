@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[1089. Duplicate Zeros](https://leetcode.com/problems/duplicate-zeros).
+[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/).
