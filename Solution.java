@@ -7,22 +7,19 @@ import java.util.List;
 import java.util.Map;
 
 class Solution {
+    public int removeDuplicates(int[] nums) {
+        if(nums.length == 0)
+            return 0;
+        
+        int addIndex = 1; //index that unique characters will be inserted at
 
-    public static int removeElement(int[] nums, int val) {
-        int index = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != val) {
-                nums[index] = nums[i];
-                index++;
+        for(int i = 0; i < nums.length - 1; i++) {
+            
+            if(nums[i] < nums[i + 1]){ //if true, num[i + 1] is a new unique number
+              nums[addIndex] = nums[i + 1];
+              addIndex++;
             }
         }
-        return index;
-    }
-
-
-    public static void main(String[] args) {
-        int[] nums = {3,2,2,3};
-        int val = 3;
-        System.out.println( removeElement(nums, val) );
+        return addIndex;
     }
 }
