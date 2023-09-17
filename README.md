@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array).
+[1346. Check If N and Its Double Exist](tps://leetcode.com/problems/check-if-n-and-its-double-exist).
