@@ -10,32 +10,28 @@ import java.util.Set;
 
 class Solution {
 
-    public static boolean validMountainArray(int[] arr) {
-        int maxValueIndex = 0;
-        if(arr.length < 3) return false;
+    public static void moveZeroes(int[] nums) {
+        int i = 0;
 
-        for(int i = 0; i < arr.length; i++) {
-            if(arr[maxValueIndex] < arr[i]) maxValueIndex = i;
-        }
-        if(maxValueIndex == arr.length - 1) return false;
-        for(int i = 0; i < maxValueIndex - 1; i++) {
-            int j = i + 1;
-            if(arr[j] <= arr[i]) {
-                return false;
+        for(int j = 0; j < nums.length; j++) {
+            if(nums[j] != 0) {
+                nums[i] = nums[j];
+                i++;
             }
         }
-        for(int i = maxValueIndex; i < arr.length - 1; i++) {
-            int j = i + 1;
-            if(arr[j] >= arr[i]) {
-                return false;
-            }
+
+        while(i <= nums.length - 1) {
+            nums[i] = 0;
+            i++;
         }
-        return true;
+
+        System.out.println( Arrays.toString(nums) );
     }
 
-    public static void main(String[] args) {
-        int[] arr = { 0,1,2,3,4,5,6,7,8,9 };
 
-        System.out.println( validMountainArray(arr) );
+    public static void main(String[] args) {
+        int[] arr = { 0,1,0,3,12};
+
+        moveZeroes(arr);
     }
 }
