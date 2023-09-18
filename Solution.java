@@ -29,9 +29,29 @@ class Solution {
     }
 
 
-    public static void main(String[] args) {
-        int[] arr = { 0,1,0,3,12};
+    public static int[] sortArrayByParity(int[] nums) {
+        int[] tempArr = new int[nums.length];
+        int j = 0;
 
-        moveZeroes(arr);
+        for(int i = 0; i < nums.length; i ++) {
+            if(nums[i] % 2 == 0) {
+                tempArr[j] = nums[i];
+                j++; 
+            } 
+        }
+        for(int i = 0; i < nums.length; i ++) {
+            if(nums[i] % 2 != 0) {
+                tempArr[j] = nums[i];
+                j++;
+            } 
+        }
+
+        return nums;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 3,2,4,1 };
+
+        System.out.println( sortArrayByParity(arr) );
     }
 }
