@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[1346. Check If N and Its Double Exist](tps://leetcode.com/problems/check-if-n-and-its-double-exist).
+[941. Valid Mountain Array](https://leetcode.com/problems/valid-mountain-array/description/).
