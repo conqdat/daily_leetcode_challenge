@@ -1,57 +1,36 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 class Solution {
 
     public static void moveZeroes(int[] nums) {
-        int i = 0;
+        // base case 
+        int n = nums.length;
+        if (n < 2) return;
 
-        for(int j = 0; j < nums.length; j++) {
-            if(nums[j] != 0) {
-                nums[i] = nums[j];
-                i++;
+        // define pointers
+        int L = 0, R = 1;
+
+        // Move zero to the back
+        while(R < n) {
+            if(nums[L] != 0) {
+                L++;
+                R++;
+            } else if(nums[R] == 0) {
+                R++;
+            } else {
+                int temp = nums[L];
+                nums[L] = nums[R];
+                nums[R] = temp;
             }
-        }
-
-        while(i <= nums.length - 1) {
-            nums[i] = 0;
-            i++;
         }
 
         System.out.println( Arrays.toString(nums) );
     }
 
 
-    public static int[] sortArrayByParity(int[] nums) {
-        int[] tempArr = new int[nums.length];
-        int j = 0;
-
-        for(int i = 0; i < nums.length; i ++) {
-            if(nums[i] % 2 == 0) {
-                tempArr[j] = nums[i];
-                j++; 
-            } 
-        }
-        for(int i = 0; i < nums.length; i ++) {
-            if(nums[i] % 2 != 0) {
-                tempArr[j] = nums[i];
-                j++;
-            } 
-        }
-
-        return nums;
-    }
-
     public static void main(String[] args) {
-        int[] arr = { 3,2,4,1 };
+        int[] arr = { 0,1,0,3,12 };
 
-        System.out.println( sortArrayByParity(arr) );
+        moveZeroes(arr);
     }
 }
