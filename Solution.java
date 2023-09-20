@@ -28,9 +28,25 @@ class Solution {
     }
 
 
-    public static void main(String[] args) {
-        int[] arr = { 0,1,0,3,12 };
+    public static int removeDuplicates(int[] nums) {
+        int n = nums.length;
+        int L = 0;
+        int R = 1;
+        
+        while(R < n) {
+            if(nums[L] == nums[R]) {
+                R++;
+            } else if(nums[L] != nums[R]) {
+                nums[++L] = nums[R];
+            }
+        }
 
-        moveZeroes(arr);
+        return L + 1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 0,0,1,1,1,2,2,3,3,4 };
+
+        System.out.println( removeDuplicates(arr) );
     }
 }
