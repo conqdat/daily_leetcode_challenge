@@ -49,9 +49,23 @@ class Solution {
         return nums;
     }
 
-    public static void main(String[] args) {
-        int[] arr = { 3,2,4,1 };
+    public static boolean isPalindrome(int x) {
+        String xString = x+"";
+        int left = 0;
+        int right = xString.length() - 1;
+        System.out.println(right);
+        while(left < right) {
+            if(xString.charAt(left) != xString.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
 
-        System.out.println( sortArrayByParity(arr) );
+    public static void main(String[] args) {
+        int x = 11;
+        System.out.println( isPalindrome(x) );
     }
 }
