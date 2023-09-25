@@ -10,62 +10,29 @@ import java.util.Set;
 
 class Solution {
 
-    public static void moveZeroes(int[] nums) {
-        int i = 0;
+    public static String mergeAlternately(String word1, String word2) {
+        StringBuilder buffer = new StringBuilder();
+        int index = 0;
+        int maxLengthOfThem = Math.max(word1.length(), word2.length());
 
-        for(int j = 0; j < nums.length; j++) {
-            if(nums[j] != 0) {
-                nums[i] = nums[j];
-                i++;
+        while(index < maxLengthOfThem) {
+            if(index < word1.length()) {
+                buffer.append(word1.charAt(index));
             }
-        }
-
-        while(i <= nums.length - 1) {
-            nums[i] = 0;
-            i++;
-        }
-
-        System.out.println( Arrays.toString(nums) );
-    }
-
-
-    public static int[] sortArrayByParity(int[] nums) {
-        int[] tempArr = new int[nums.length];
-        int j = 0;
-
-        for(int i = 0; i < nums.length; i ++) {
-            if(nums[i] % 2 == 0) {
-                tempArr[j] = nums[i];
-                j++; 
-            } 
-        }
-        for(int i = 0; i < nums.length; i ++) {
-            if(nums[i] % 2 != 0) {
-                tempArr[j] = nums[i];
-                j++;
-            } 
-        }
-
-        return nums;
-    }
-
-    public static boolean isPalindrome(int x) {
-        String xString = x+"";
-        int left = 0;
-        int right = xString.length() - 1;
-        System.out.println(right);
-        while(left < right) {
-            if(xString.charAt(left) != xString.charAt(right)) {
-                return false;
+            if(index < word2.length()) {
+                buffer.append(word2.charAt(index));
             }
-            left++;
-            right--;
+            index++;
         }
-        return true;
+
+        return buffer.toString();
     }
 
     public static void main(String[] args) {
-        int x = 11;
-        System.out.println( isPalindrome(x) );
+        String word1 = "abc";
+        String word2 = "pqr";
+
+
+        System.out.println( mergeAlternately(word1, word2) );
     }
 }

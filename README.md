@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[283. Move Zeroes](https://leetcode.com/problems/move-zeroes).
+[1768. Merge Strings Alternately](https://leetcode.com/problems/merge-strings-alternately).
