@@ -1,38 +1,18 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+        // Check if concatenated strings are equal or not, if not return ""
+        if (!(str1 + str2).equals(str2 + str1))
+            return "";
+        // If strings are equal than return the substring from 0 to gcd of size(str1), size(str2)
+        int gcd = gcd(str1.length(), str2.length());
+        return str1.substring(0, gcd);
+    }
 
-    public static String mergeAlternately(String word1, String word2) {
-        StringBuilder buffer = new StringBuilder();
-        int index = 0;
-        int maxLengthOfThem = Math.max(word1.length(), word2.length());
-
-        while(index < maxLengthOfThem) {
-            if(index < word1.length()) {
-                buffer.append(word1.charAt(index));
-            }
-            if(index < word2.length()) {
-                buffer.append(word2.charAt(index));
-            }
-            index++;
-        }
-
-        return buffer.toString();
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
     }
 
     public static void main(String[] args) {
-        String word1 = "abc";
-        String word2 = "pqr";
-
-
-        System.out.println( mergeAlternately(word1, word2) );
+        
     }
 }
