@@ -4,31 +4,23 @@ import java.util.Map;
 
 class Solution {
 
-    public static int removeDuplicates(int[] nums) {
-        int result = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-
-        for(int i = 0; i < nums.length; i++) {
-            map.put( nums[i], map.getOrDefault(nums[i], 0) + 1);
-        }
-        System.out.println(map);
-        for(int i: map.keySet()) {
-            System.out.println(i);
-            if(map.get(i) > 2) {
-                result += 2;
-            } else {
-                result += map.get(i);
+    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int countZero = 0;
+        for(int i = 0; i < flowerbed.length; i++) {
+            if(flowerbed[i] == 0) {
+                countZero++;
             }
         }
+        if(n == 1 && countZero - n >= 2) return true; 
+        if(countZero / 2 >= n && countZero % n != 0) return true;
 
-
-        return result;
+        return false;
     }
 
     public static void main(String[] args) {
-        int[] arr = { 0,0,1,1,1,1,2,3,3 };
+        int[] flowerbed = { 1,0,0,0,1};
+        int n = 1;
 
-        System.out.println( removeDuplicates(arr) );
-
+        System.out.println( canPlaceFlowers(flowerbed, n) );
     }
 }
