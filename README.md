@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[283. Move Zeroes](https://leetcode.com/problems/move-zeroes).
+[345. Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string).

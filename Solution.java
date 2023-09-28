@@ -4,23 +4,40 @@ import java.util.Map;
 
 class Solution {
 
-    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-        int countZero = 0;
-        for(int i = 0; i < flowerbed.length; i++) {
-            if(flowerbed[i] == 0) {
-                countZero++;
+    public static String reverseVowels(String s) {
+        char[] word = s.toCharArray();
+        int start = 0;
+        int end = s.length() - 1;
+        String vowels = "aeiouAEIOU";
+        
+        while (start < end) {
+            // Move start pointer until it points to a vowel
+            while (start < end && vowels.indexOf(word[start]) == -1) {
+                start++;
             }
+            
+            // Move end pointer until it points to a vowel
+            while (start < end && vowels.indexOf(word[end]) == -1) {
+                end--;
+            }
+            
+            // Swap the vowels
+            char temp = word[start];
+            word[start] = word[end];
+            word[end] = temp;
+            
+            // Move the pointers towards each other
+            start++;
+            end--;
         }
-        if(n == 1 && countZero - n >= 2) return true; 
-        if(countZero / 2 >= n && countZero % n != 0) return true;
-
-        return false;
+        
+        String answer = new String(word);
+        return answer;
     }
 
     public static void main(String[] args) {
-        int[] flowerbed = { 1,0,0,0,1};
-        int n = 1;
+        String s = "hello";
 
-        System.out.println( canPlaceFlowers(flowerbed, n) );
+        System.out.println( reverseVowels(s) );
     }
 }
