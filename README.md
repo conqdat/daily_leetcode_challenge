@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings).
+[151. Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string).
