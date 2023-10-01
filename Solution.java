@@ -2,41 +2,28 @@ import java.util.Arrays;
 
 class Solution {
 
-    public static int[] productExceptSelf(int[] nums) {
-        int n = nums.length;
-        int[] leftProducts = new int[n];
-        int[] rightProducts = new int[n];
-        int[] result = new int[n];
+    public static boolean increasingTriplet(int[] nums) {
+        int first = Integer.MAX_VALUE;  // Smallest value seen so far.
+        int second = Integer.MAX_VALUE; // Second smallest value seen so far.
 
-        // Compute the product of all elements to the left of each element
-        int leftProduct = 1;
-        for (int i = 0; i < n; i++) {
-            leftProducts[i] = leftProduct;
-            leftProduct *= nums[i];
+        for (int num : nums) {
+            if (num <= first) {
+                first = num; // Update the smallest value.
+            } else if (num <= second) {
+                second = num; // Update the second smallest value.
+            } else {
+                return true; // Found an increasing triplet.
+            }
         }
 
-        // Compute the product of all elements to the right of each element
-        int rightProduct = 1;
-        for (int i = n - 1; i >= 0; i--) {
-            rightProducts[i] = rightProduct;
-            rightProduct *= nums[i];
-        }
-
-        // Calculate the final result
-        for (int i = 0; i < n; i++) {
-            result[i] = leftProducts[i] * rightProducts[i];
-        }
-
-
-        System.out.println( Arrays.toString(result) );
-        return result;
+        return false; // No increasing triplet found.
     }
 
-
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4};
-        
-        System.out.println( productExceptSelf(nums) );
+        int[] nums = { 20,100,10,12,5,13 };
+        // int[] nums = { 20, 100, 10, 12, 5, 13 };
+
+        System.out.println(increasingTriplet(nums));
 
     }
 }
