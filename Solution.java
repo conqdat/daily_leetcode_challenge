@@ -4,40 +4,48 @@ import java.util.Map;
 
 class Solution {
 
-    public static String reverseVowels(String s) {
-        char[] word = s.toCharArray();
-        int start = 0;
-        int end = s.length() - 1;
-        String vowels = "aeiouAEIOU";
-        
-        while (start < end) {
-            // Move start pointer until it points to a vowel
-            while (start < end && vowels.indexOf(word[start]) == -1) {
-                start++;
+    public static int[][] merge(int[][] intervals) {
+        public static int[][] merge(int[][] intervals) {
+            if (intervals == null || intervals.length == 0) {
+                return new int[0][];
             }
-            
-            // Move end pointer until it points to a vowel
-            while (start < end && vowels.indexOf(word[end]) == -1) {
-                end--;
+    
+            // Sort intervals by the start value
+            Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+    
+            List<int[]> merged = new ArrayList<>();
+            int[] currentInterval = intervals[0];
+    
+            for (int i = 1; i < intervals.length; i++) {
+                int[] interval = intervals[i];
+                if (currentInterval[1] >= interval[0]) {
+                    // Merge overlapping intervals
+                    currentInterval[1] = Math.max(currentInterval[1], interval[1]);
+                } else {
+                    // Add the current merged interval to the result and start a new one
+                    merged.add(currentInterval);
+                    currentInterval = interval;
+                }
             }
-            
-            // Swap the vowels
-            char temp = word[start];
-            word[start] = word[end];
-            word[end] = temp;
-            
-            // Move the pointers towards each other
-            start++;
-            end--;
+    
+            // Add the last merged interval
+            merged.add(currentInterval);
+    
+            // Convert the List to an array
+            return merged.toArray(new int[merged.size()][]);
         }
-        
-        String answer = new String(word);
-        return answer;
     }
 
+    
     public static void main(String[] args) {
-        String s = "hello";
+        int[][] intervals = {
+                { 1, 3 },
+                { 8, 10 },
+                { 2, 6 },
+                { 15, 18 }
+        };
 
-        System.out.println( reverseVowels(s) );
+
+        System.out.println(merge(intervals));
     }
 }
