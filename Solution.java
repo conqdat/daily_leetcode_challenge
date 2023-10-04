@@ -4,48 +4,25 @@ import java.util.Map;
 
 class Solution {
 
-    public static int[][] merge(int[][] intervals) {
-        public static int[][] merge(int[][] intervals) {
-            if (intervals == null || intervals.length == 0) {
-                return new int[0][];
+    public static boolean isSubsequence(String s, String t) {
+        int i = 0;
+        int j = 0;
+
+        while(i < s.length() && j < t.length()) {
+            if(s.charAt(i) == t.charAt(j)) {
+                i++;
             }
-    
-            // Sort intervals by the start value
-            Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
-    
-            List<int[]> merged = new ArrayList<>();
-            int[] currentInterval = intervals[0];
-    
-            for (int i = 1; i < intervals.length; i++) {
-                int[] interval = intervals[i];
-                if (currentInterval[1] >= interval[0]) {
-                    // Merge overlapping intervals
-                    currentInterval[1] = Math.max(currentInterval[1], interval[1]);
-                } else {
-                    // Add the current merged interval to the result and start a new one
-                    merged.add(currentInterval);
-                    currentInterval = interval;
-                }
-            }
-    
-            // Add the last merged interval
-            merged.add(currentInterval);
-    
-            // Convert the List to an array
-            return merged.toArray(new int[merged.size()][]);
+            j++;
         }
+        return i == s.length();
     }
 
     
     public static void main(String[] args) {
-        int[][] intervals = {
-                { 1, 3 },
-                { 8, 10 },
-                { 2, 6 },
-                { 15, 18 }
-        };
+        String s = "acb";
+        String t = "ahbgdc";
 
 
-        System.out.println(merge(intervals));
+        System.out.println( isSubsequence(s, t) );
     }
 }
