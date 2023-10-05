@@ -1,28 +1,27 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 class Solution {
 
-    public static boolean isSubsequence(String s, String t) {
-        int i = 0;
-        int j = 0;
+    public static List<Integer> majorityElement(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        Map<Integer,Integer> numMap = new HashMap<>();
 
-        while(i < s.length() && j < t.length()) {
-            if(s.charAt(i) == t.charAt(j)) {
-                i++;
-            }
-            j++;
+        for(int i = 0; i < nums.length; i++) {
+            numMap.put(nums[i],  numMap.getOrDefault(nums[i], 0) + 1 );
         }
-        return i == s.length();
-    }
 
+        for(var entry: numMap.entrySet()) {
+            if(entry.getValue() > nums.length / 3) {
+                result.add(entry.getKey());
+            }
+        }
+
+        return result;
+    }
     
     public static void main(String[] args) {
-        String s = "acb";
-        String t = "ahbgdc";
+        int[] nums = { 1,2 };
 
-
-        System.out.println( isSubsequence(s, t) );
+        System.out.println( majorityElement(nums) );
     }
 }

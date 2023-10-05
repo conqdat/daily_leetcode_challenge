@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[392. Is Subsequence](https://leetcode.com/problems/is-subsequence).
+[229. Majority Element II](https://leetcode.com/problems/majority-element-ii).
