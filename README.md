@@ -1,2 +1,2 @@
 # Daily Leetcode Challenge
-[229. Majority Element II](https://leetcode.com/problems/majority-element-ii).
+[1679. Max Number of K-Sum Pairs](https://leetcode.com/problems/max-number-of-k-sum-pairs).
