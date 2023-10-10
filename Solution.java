@@ -1,53 +1,34 @@
 import java.util.*;
 
+
 class Solution {
 
-    public static int[] searchRange(int[] nums, int target) {
-        int[] result = {-1, -1};
-        int left = 0;
-        int right = nums.length - 1;
-
-        if (nums.length == 0)
-            return result;
-
-        // Binary search to find the first occurrence of target
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-
-            if (nums[mid] == target) {
-                result[0] = mid;
-                right = mid - 1; // Continue searching on the left side
-            } else if (nums[mid] < target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
+    public static double findMaxAverage(int[] nums, int k) {
+        double result = 0;
+        if(nums.length <= k) {
+            return findAverage(nums, k);
         }
-
-        // Reset left and right pointers
-        left = 0;
-        right = nums.length - 1;
-
-        // Binary search to find the last occurrence of target
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-
-            if (nums[mid] == target) {
-                result[1] = mid;
-                left = mid + 1; // Continue searching on the right side
-            } else if (nums[mid] < target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
+        for(int i = 0; i < nums.length - k + 1; i ++) {
+            double currentAverage = 0; 
+            for(int j = 0; j < k; j++) {
+                currentAverage += nums[j+i];
+            } 
+            result = Math.max(currentAverage / k, result);
         }
-
         return result;
+    }
+
+    public static double findAverage(int[] nums, int k ) {
+        double result = 0;
+        for(int i = 0; i < k; i++) {
+            result += nums[i];
+        }
+        return result / k;
     }
     
     public static void main(String[] args) {
-        int[] nums = { 5,7,7,8,8,10 };
-        int target = 8;
-        System.out.println( searchRange(nums, target) );
+        int[] nums = {  3,3,4,3,0  };
+        int k = 3;
+        System.out.println( findMaxAverage(nums, k) );
     }
 }
