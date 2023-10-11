@@ -4,31 +4,23 @@ import java.util.*;
 class Solution {
 
     public static double findMaxAverage(int[] nums, int k) {
-        double result = 0;
-        if(nums.length <= k) {
-            return findAverage(nums, k);
-        }
+        double result = -10000;
         for(int i = 0; i < nums.length - k + 1; i ++) {
-            double currentAverage = 0; 
+            double currentSum = 0;
             for(int j = 0; j < k; j++) {
-                currentAverage += nums[j+i];
-            } 
-            result = Math.max(currentAverage / k, result);
+                currentSum += nums[i+j];
+            }
+            result = Math.max(currentSum / k, result);
         }
-        return result;
-    }
 
-    public static double findAverage(int[] nums, int k ) {
-        double result = 0;
-        for(int i = 0; i < k; i++) {
-            result += nums[i];
-        }
-        return result / k;
+        return result;
     }
     
     public static void main(String[] args) {
-        int[] nums = {  3,3,4,3,0  };
-        int k = 3;
+        int[] nums = {  1,12,-5,-6,50,3  };
+        int k = 4;
+
         System.out.println( findMaxAverage(nums, k) );
+
     }
 }
