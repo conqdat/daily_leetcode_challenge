@@ -15,12 +15,62 @@ class Solution {
 
         return result;
     }
+
+
+    public static int maxVowels(String s, int k) {
+        int result = 0;
+        for(int i = 0; i < s.length() - k + 1; i++) {
+            int currentCount = 0;
+            for(int j = 0; j < k; j++) {
+                if(s.charAt(i+j) == 'i' || 
+                   s.charAt(i+j) == 'o' || 
+                   s.charAt(i+j) == 'e' || 
+                   s.charAt(i+j) == 'a' || 
+                   s.charAt(i+j) == 'u' ) 
+                {
+                    currentCount += 1;
+                }
+            }
+            result = Math.max(result, currentCount);
+        }
+
+        return result;
+    }
+
+    public int maxVowelsVersionTwo(String s, int k) {
+        int result = 0;
+        int currentCount = 0;
+        
+        // Calculate the count of vowels for the first 'k' characters.
+        for (int i = 0; i < k; i++) {
+            if (isVowel(s.charAt(i))) {
+                currentCount++;
+            }
+        }
+        result = currentCount;
+
+        // Use a sliding window to calculate the maximum vowel count.
+        for (int i = k; i < s.length(); i++) {
+            if (isVowel(s.charAt(i))) {
+                currentCount++;
+            }
+            if (isVowel(s.charAt(i - k))) {
+                currentCount--;
+            }
+            result = Math.max(result, currentCount);
+        }
+
+        return result;
+    }
+    
+    private boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
     
     public static void main(String[] args) {
-        int[] nums = {  1,12,-5,-6,50,3  };
-        int k = 4;
+        String s = "leetcode";
+        int k = 3;
 
-        System.out.println( findMaxAverage(nums, k) );
-
+        System.out.println( maxVowels(s, k) );
     }
 }
