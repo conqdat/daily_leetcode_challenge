@@ -16,9 +16,27 @@ class Solution {
         return true; // All counts are unique.
     }
 
-    public static void main(String[] args) {
-        int[] arr = { 1, 2, 2, 1, 1, 3 };
+    public static int longestConsecutive(int[] nums) {
+        int result = 0;
+        int count = 1;
+        if(nums.length == 0) return 0;
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length - 1; i++) {
+            int j = i + 1;
+            if(nums[j] - nums[i] == 1) {
+                count += 1;
+            } else {
+                result = Math.max(count, result);
+                count = 1;
+            }
+        }
+        result = Math.max(count, result);
+        return result;
+    }
 
-        System.out.println(uniqueOccurrences(arr));
+    public static void main(String[] args) {
+        int[] arr = { 9,1,4,7,3,-1,0,5,8,-1,6 };
+
+        System.out.println(longestConsecutive(arr));
     }
 }
