@@ -1,42 +1,40 @@
 import java.util.*;
 
 class Solution {
-    public static boolean uniqueOccurrences(int[] arr) {
-        HashMap<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < arr.length; i++) {
-            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+    public static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+	    Set<Integer> s1 = new HashSet<>();
+        Set<Integer> s2 = new HashSet<>();
+
+        // output list
+        List<List<Integer>> out =  new ArrayList<>();
+        out.add(new ArrayList<Integer>());
+        out.add(new ArrayList<Integer>());
+
+        // adding the elements to the set
+        for (int i: nums1) {
+            s1.add(i);
         }
-        Set<Integer> seen = new HashSet<>();
-        for (int count : map.values()) {
-            if (!seen.add(count)) {
-                return false; // If a count is not unique, return false.
-            }
+        for (int i: nums2) {
+            s2.add(i);
         }
-        return true; // All counts are unique.
+
+        // checking and adding the elements to the output list
+        for (int i: s1) {
+            if (!s2.contains(i)) out.get(0).add(i);
+        }
+        for (int i: s2) {
+            if (!s1.contains(i)) out.get(1).add(i);
+        }
+        return out;
     }
 
-    public static int longestConsecutive(int[] nums) {
-        int result = 0;
-        int count = 1;
-        if(nums.length == 0) return 0;
-        Arrays.sort(nums);
-        for(int i = 0; i < nums.length - 1; i++) {
-            int j = i + 1;
-            if(nums[j] - nums[i] == 1) {
-                count += 1;
-            } else {
-                result = Math.max(count, result);
-                count = 1;
-            }
-        }
-        result = Math.max(count, result);
-        return result;
-    }
+
 
     public static void main(String[] args) {
-        int[] arr = { 9,1,4,7,3,-1,0,5,8,-1,6 };
+        int[] nums1 = {1, 2, 3};
+        int[] nums2 = {2, 4, 6};
 
-        System.out.println(longestConsecutive(arr));
+        System.out.println( findDifference(nums1, nums2) );
     }
 }
