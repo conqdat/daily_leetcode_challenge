@@ -2,28 +2,26 @@ import java.util.Arrays;
 
 class Solution {
 
-    public static boolean increasingTriplet(int[] nums) {
-        int first = Integer.MAX_VALUE;  // Smallest value seen so far.
-        int second = Integer.MAX_VALUE; // Second smallest value seen so far.
+    public static int[] prefixSum(int[] arr) {
+        int[] prefixArr = new int[arr.length];
 
-        for (int num : nums) {
-            if (num <= first) {
-                first = num; // Update the smallest value.
-            } else if (num <= second) {
-                second = num; // Update the second smallest value.
-            } else {
-                return true; // Found an increasing triplet.
-            }
+        prefixArr[0] = arr[0];
+
+        for(int i = 1; i < prefixArr.length; i++) {
+            prefixArr[i] = prefixArr[i - 1] + arr[i];
         }
 
-        return false; // No increasing triplet found.
+        System.out.println( Arrays.toString(arr) );
+        System.out.println("==========");
+        System.out.println( Arrays.toString(prefixArr) );
+
+        return arr;
     }
 
-    public static void main(String[] args) {
-        int[] nums = { 20,100,10,12,5,13 };
-        int[] nums = { 20, 100, 10, 12, 5, 13 };
 
-        System.out.println(increasingTriplet(nums));
+    public static void main(String[] args) {
+        int[] arr = { 1, 2 , 3, 4 ,5 ,6 ,7, 8 ,9, 10 };
+        System.out.println(prefixSum(arr));
 
     }
 }
