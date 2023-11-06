@@ -2,26 +2,32 @@ import java.util.Arrays;
 
 class Solution {
 
-    public static int[] prefixSum(int[] arr) {
-        int[] prefixArr = new int[arr.length];
+    public static int[] countBits(int n) {
+        int[] result = new int[n+1];
 
-        prefixArr[0] = arr[0];
-
-        for(int i = 1; i < prefixArr.length; i++) {
-            prefixArr[i] = prefixArr[i - 1] + arr[i];
+        for(int i = 0; i < result.length; i++) {
+            result[i] = sumOfNum( Integer.bitCount(i) );
         }
+        System.out.println( Arrays.toString(result) );
+        return result;
+    }
+    
 
-        System.out.println( Arrays.toString(arr) );
-        System.out.println("==========");
-        System.out.println( Arrays.toString(prefixArr) );
+    public static int sumOfNum(int n) {
+        int result = 0;
 
-        return arr;
+        while(n > 0) {
+            result += n % 10;
+            n = n / 10;
+        }
+        
+        return result;
     }
 
-
     public static void main(String[] args) {
-        int[] arr = { 1, 2 , 3, 4 ,5 ,6 ,7, 8 ,9, 10 };
-        System.out.println(prefixSum(arr));
+        int n = 5;
+
+        System.out.println( countBits(n) );
 
     }
 }
