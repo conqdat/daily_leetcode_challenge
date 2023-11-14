@@ -1,48 +1,24 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 class Solution {
-
-    public static int soOne(String S) {
-        int result = 0;
-        boolean isHaveA = false;
-        for (int i = S.length() - 1; i >= 0; i--) {
-            if(S.charAt(i) == 'A') {
-                isHaveA = true;
-            }
-            else if(S.charAt(i) == 'B' && isHaveA) {
-                result += 1;
-            }
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        if (n == 0) {
+            return true;
         }
-        return result;
-    }
-
-    public  static int solution(int[] A) {
+        
         int count = 0;
-        int previous = A[0];
-
-        if(A.length <= 2) { return 0; }
+        int i = 0;
         
-        for (int i = 1; i < A.length - 1; i++) {
-            int current = A[i];
-            int next = A[i + 1];
-        
-            if (
-                (previous <= current && current >= next) 
-                || (previous >= current && current < next) 
-            )     
-            {
+        while (i < flowerbed.length) {
+            if (flowerbed[i] == 0 && (i == 0 || flowerbed[i-1] == 0) && (i == flowerbed.length-1 || flowerbed[i+1] == 0)) {
+                flowerbed[i] = 1;
                 count++;
-                previous = current;
+                if (count == n) {
+                    return true;
+                }
             }
+            i++;
         }
         
-        return count;
-    }
-
-    public static void main(String[] args) {
-        int arr[] = { 2,2,3,4,3,3,2,2,1,1,2,5 };
-        System.out.println( solution(arr) );
+        return false;
     }
 }
