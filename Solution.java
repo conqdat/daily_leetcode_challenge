@@ -1,24 +1,33 @@
+import java.util.Stack;
 
 class Solution {
-    public boolean canPlaceFlowers(int[] flowerbed, int n) {
-        if (n == 0) {
-            return true;
-        }
+
+    public static String removeStars(String s) {
+        Stack<Character> stack = new Stack<>();
         
-        int count = 0;
-        int i = 0;
-        
-        while (i < flowerbed.length) {
-            if (flowerbed[i] == 0 && (i == 0 || flowerbed[i-1] == 0) && (i == flowerbed.length-1 || flowerbed[i+1] == 0)) {
-                flowerbed[i] = 1;
-                count++;
-                if (count == n) {
-                    return true;
+        for (char c : s.toCharArray()) {
+            if (c == '*') {
+                // If the stack is not empty, pop the closest non-star character
+                if (!stack.isEmpty()) {
+                    stack.pop();
                 }
+            } else {
+                stack.push(c);
             }
-            i++;
         }
-        
-        return false;
+
+        // Build the result string from the stack
+        StringBuilder result = new StringBuilder();
+        while (!stack.isEmpty()) {
+            result.insert(0, stack.pop());
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String s = "leet**cod*e";
+
+        System.out.println( removeStars(s) );
     }
 }
