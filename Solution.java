@@ -1,33 +1,41 @@
-import java.util.Stack;
-
 class Solution {
 
-    public static String removeStars(String s) {
-        Stack<Character> stack = new Stack<>();
-        
-        for (char c : s.toCharArray()) {
-            if (c == '*') {
-                // If the stack is not empty, pop the closest non-star character
-                if (!stack.isEmpty()) {
-                    stack.pop();
+    public static char[] swap(char[] ch, int i, int j) {
+        char temp = ch[i];
+        ch[i] = ch[j];
+        ch[j] = temp;
+        return ch;
+    }
+
+    public static String revertStringWithoutNumber(String str) {
+        char[] ch = str.toCharArray();
+        int left = 0;
+        int right = ch.length - 1;
+
+        while (left <= right) {
+            if (!Character.isDigit(ch[left])) {
+                while (right >= 0 && Character.isDigit(ch[right])) {
+                    right--;
+                }
+                if (right >= 0) {
+                    ch = swap(ch, left, right);
+                    left++;
+                    right--;
                 }
             } else {
-                stack.push(c);
+                left++;
             }
         }
 
-        // Build the result string from the stack
-        StringBuilder result = new StringBuilder();
-        while (!stack.isEmpty()) {
-            result.insert(0, stack.pop());
-        }
-
-        return result.toString();
+        return new String(ch);
     }
 
     public static void main(String[] args) {
-        String s = "leet**cod*e";
+        String str = "H3ll0 W0r1d";
+        // Output: "dlr3W 0ll0H"
 
-        System.out.println( removeStars(s) );
+        // Time complexity: O(n)
+        // Space complexity: O(1)
+        System.out.println(revertStringWithoutNumber(str));
     }
 }
