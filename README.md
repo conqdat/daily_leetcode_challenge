@@ -1,3 +1,3 @@
 # Daily Leetcode Challenge
 
-[2390. Removing Stars From a String](https://leetcode.com/problems/removing-stars-from-a-string/).
+[1679. Max Number of K-Sum Pairs](https://leetcode.com/problems/max-number-of-k-sum-pairs).
