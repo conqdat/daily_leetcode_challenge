@@ -1,4 +1,11 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 class Solution {
 
@@ -50,13 +57,49 @@ class Solution {
     }
     
 
+    public static int longestOnes(int[] nums, int k) {
+        
 
+        return 0;
+    }
     
+
+    public static List<String> getLatestKRequests(List<String> requests, int K) {
+        List<String> ansList = new ArrayList<>();
+        HashMap<String, Integer> myMap = new HashMap<>();
+
+        for (String item : requests) {
+            myMap.put(item, myMap.getOrDefault(item, 0) + 1);
+        }
+
+        Map<String, Integer> sortedMapDesc = myMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+    
+        System.out.println(sortedMapDesc);
+
+        return ansList;
+    }
+
+
+
     public static void main(String[] args) {
         int nums[] = { 1,12,-5,-6,50,3 };
         int k = 4;
 
 
-        System.out.println( findMaxAverage(nums, k) );
+        List<String> request = Arrays.asList("item2", "item1", "item3", "item1", "item3");
+
+
+        System.out.println( getLatestKRequests(request, 3) );
+
+        // System.out.println( longestOnes(nums, k) );
+        // System.out.println( findMaxAverage(nums, k) );
     }
 }
