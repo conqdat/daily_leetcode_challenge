@@ -43,3 +43,10 @@ There are 3 tables:
 - album_id
 
 Get "import" list that include "album" records which only have one "song" each
+
+- group by album_id to get the count of song
+- filter the count of song = 1
+- get the import_id
+  ```sql
+      SELECT import_id FROM album GROUP BY album_id HAVING COUNT(album_id) = 1
+  ```
