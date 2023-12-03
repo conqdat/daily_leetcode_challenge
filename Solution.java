@@ -1,105 +1,112 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 class Solution {
+    
 
-    public static int maxOperations(int[] nums, int k) {
-        int count = 0;
-        int left = 0;
-        int right = nums.length - 1;
+    public static void insertionSort(int[] nums) {
+        for (int j = 1; j < nums.length; j++) {
+            int value = nums[j];
+            int i = j - 1;
+            while (i > 0 && nums[i] > value) {
+                nums[i + 1] = nums[i];
+                i = i - 1;
+            }
+            nums[i + 1] = value;
+        }
+        System.out.println( Arrays.toString(nums) );
+    }
+    
 
-        Arrays.sort(nums);
+    public static void quickSort(int[] nums, int L, int R) {
+        if(L >= R) return;
+        int key = nums[(L+R) / 2];
+        int k = partition(nums, L, R, key);
 
-        while (left < right) {
-            int sum = nums[left] + nums[right];
-            if (sum == k) {
-                count++;
-                left++;
-                right--;
-            } else if (sum < k) {
-                left++;
-            } else {
-                right--;
+        quickSort(nums, L, k -1);
+        quickSort(nums, k, R);
+    }
+
+    // Return pivot value
+    public static int partition(int[] nums, int L, int R, int key) {
+        int iL = L;
+        int iR = R;
+
+        while(iL <= iR) {
+            // iL: item >= key --> swap
+            while(nums[iL] < key) iL++;
+            // iR: item <= --> swap
+            while(nums[iR] > key) iR--;
+            if(iL <= iR) {
+                int temp = nums[iL];
+                nums[iL] = nums[iR];
+                nums[iR] = temp;
+                iL++;
+                iR--;
             }
         }
-
-        return count;
+        return iL;
     }
 
-    public static double findMaxAverage(int[] nums, int k) {
-        double result = 0.0;
-    
-        // Calculate the sum of the first window of size k
-        for (int i = 0; i < k; i++) {
-            result += nums[i] / (double) k;
+
+    public static int[] mergerSort(int[] arr, int L, int R) {
+        // Edge case & Stop condition
+        if(L > R) return new int[0];
+
+        if(L == R) {
+            int[] singleElement = {arr[L]};
+            return singleElement;
         }
-    
-        // Initialize result with the average of the first window
-        double currentWindowValue = result;
-    
-        // Slide the window through the rest of the array
-        for (int i = k; i < nums.length; i++) {
-            // Update the currentWindowValue by subtracting the first element of the previous window
-            // and adding the current element to the window sum
-            currentWindowValue = (currentWindowValue * k - nums[i - k] + nums[i]) / k;
-    
-            // Update the result if the currentWindowValue is greater
-            result = Math.max(currentWindowValue, result);
+
+        // Divide
+        int k = (L + R) / 2;
+        int[] leftArr = mergerSort(arr, L, k);
+        int[] rightArr = mergerSort(arr, k+1, R);
+
+        // Merge
+        return merge(leftArr, rightArr);
+    }
+
+    public static int[] merge(int[] leftArr, int[] rightArr) {
+        int[] result = new int[leftArr.length + rightArr.length];
+        int i = 0;
+        int i1 = 0;
+        int i2 = 0;
+
+        while(i < result.length) {
+            // left & right arr != null
+            if(i1 < leftArr.length && i2 < rightArr.length) {
+                if(leftArr[i1] <= rightArr[i2]) {
+                    result[i] = leftArr[i1];
+                    i++; 
+                    i1++;
+                } else {
+                    result[i] = rightArr[i2];
+                    i++; 
+                    i2++;
+                }
+            } 
+            // leftArr || rightArr == null
+            else {
+                if(i1 < leftArr.length) {
+                    result[i] = leftArr[i1];
+                    i++; 
+                    i1++;
+                } else {
+                    result[i] = rightArr[i2];
+                    i++; 
+                    i2++;
+                }
+            }
         }
-    
         return result;
     }
-    
-
-    public static int longestOnes(int[] nums, int k) {
-        
-
-        return 0;
-    }
-    
-
-    public static List<String> getLatestKRequests(List<String> requests, int K) {
-        List<String> ansList = new ArrayList<>();
-        HashMap<String, Integer> myMap = new HashMap<>();
-
-        for (String item : requests) {
-            myMap.put(item, myMap.getOrDefault(item, 0) + 1);
-        }
-
-        Map<String, Integer> sortedMapDesc = myMap.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new
-                ));
-    
-        System.out.println(sortedMapDesc);
-
-        return ansList;
-    }
-
-
 
     public static void main(String[] args) {
-        int nums[] = { 1,12,-5,-6,50,3 };
-        int k = 4;
+        int nums[] = { 6,7,8,5,4,3,2,1 };
+        // insertionSort(nums);
 
+        // quickSort(nums, 0, nums.length - 1);
 
-        List<String> request = Arrays.asList("item2", "item1", "item3", "item1", "item3");
-
-
-        System.out.println( getLatestKRequests(request, 3) );
-
-        // System.out.println( longestOnes(nums, k) );
-        // System.out.println( findMaxAverage(nums, k) );
+        mergerSort(nums, 0, nums.length - 1);
     }
 }
