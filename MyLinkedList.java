@@ -121,20 +121,5 @@ public class MyLinkedList {
         return headNode;
     }
 
-    public static void main(String[] args) {
-        Node n1 = new Node(0);
-        Node n2 = new Node(1);
-        Node n3 = new Node(2);
 
-        n1.next = n2;
-        n2.next = n3;
-
-        printMyLinkedList(n1);
-
-        n1 = removeAtIndex(n1, 0);
-
-
-        printMyLinkedList(n1);
-
-    }
 }
