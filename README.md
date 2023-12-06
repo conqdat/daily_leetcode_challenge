@@ -1,3 +1,3 @@
 # Daily Leetcode Challenge
 
-[912. Sort an Array](https://leetcode.com/problems/sort-an-array/).
+[1716. Calculate Money in Leetcode Bank](https://leetcode.com/problems/calculate-money-in-leetcode-bank).
