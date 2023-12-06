@@ -27,11 +27,33 @@ class Solution {
         return result;
     }
 
+
+    public static int maxArea(int[] height) {
+        int l = 0;
+        int r = height.length - 1;
+        int result = 0;
+
+        while(r >= l) {
+            if(height[r] >= height[l]) {
+                int currentArea = height[l] * (r - l);
+                result = Math.max(currentArea, result);
+                l++;
+            } else {
+                int currentArea = height[r] * (r - l);
+                result = Math.max(currentArea, result);
+                r--;
+            }
+        }
+        return result;
+    }
+
+
+
     public static void main(String[] args) {
-        int n = 4;
 
+        int[] height = { 1,8,6,2,5,4,8,3,7 };
 
-        System.out.println( totalMoney(n) );
+        System.out.println( maxArea(height) );
 
     }
 }
