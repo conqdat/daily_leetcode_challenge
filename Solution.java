@@ -2,58 +2,32 @@ import java.util.*;
 
 class Solution {
 
+    public static String largestOddNumber(String num) {
+        // Check if the last digit of the input number is odd
+        if ((int) num.charAt(num.length() - 1) % 2 == 1) {
+            return num; // If odd, return the original number
+        }
 
-    public static int totalMoney(int n) {
-        if(n < 7) {
-            int result = 0;
-            for(int i = 1; i <= n; i++) {
-                result += i;
+        int i = num.length() - 1;
+        // Iterate from the end of the string towards the beginning
+        while (i >= 0) {
+            int n = num.charAt(i);
+            // Check if the current digit is odd
+            if (n % 2 == 1) {
+                // If odd, return the substring from the beginning up to the current index
+                return num.substring(0, i + 1);
             }
-            return result;
+            i--; // Move to the previous digit
         }
-        int a = (n / 7);
-        int r = n % 7;
-        int result = 0;
-        int i = a;
-
-        while(i > 0) {
-            result += 28 + (i - 1) * 7;
-            i--;
-        }
-        for(int j = 0; j < r; j++) {
-            int c = a + j + 1;
-            result += c;
-        }
-        return result;
+        return ""; // Return an empty string if no odd digit is found
     }
-
-
-    public static int maxArea(int[] height) {
-        int l = 0;
-        int r = height.length - 1;
-        int result = 0;
-
-        while(r >= l) {
-            if(height[r] >= height[l]) {
-                int currentArea = height[l] * (r - l);
-                result = Math.max(currentArea, result);
-                l++;
-            } else {
-                int currentArea = height[r] * (r - l);
-                result = Math.max(currentArea, result);
-                r--;
-            }
-        }
-        return result;
-    }
-
 
 
     public static void main(String[] args) {
 
-        int[] height = { 1,8,6,2,5,4,8,3,7 };
+        String num = "4206";
 
-        System.out.println( maxArea(height) );
+        System.out.println( largestOddNumber(num) );
 
     }
 }
