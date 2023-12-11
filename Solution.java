@@ -2,32 +2,35 @@ import java.util.*;
 
 class Solution {
 
-    public static String largestOddNumber(String num) {
-        // Check if the last digit of the input number is odd
-        if ((int) num.charAt(num.length() - 1) % 2 == 1) {
-            return num; // If odd, return the original number
-        }
+    public static int[] asteroidCollision(int[] asteroids) {
+        int n = asteroids.length;
+        int j = 0;  // Index for the result array
 
-        int i = num.length() - 1;
-        // Iterate from the end of the string towards the beginning
-        while (i >= 0) {
-            int n = num.charAt(i);
-            // Check if the current digit is odd
-            if (n % 2 == 1) {
-                // If odd, return the substring from the beginning up to the current index
-                return num.substring(0, i + 1);
+        for (int i = 0; i < n; i++) {
+            int asteroid = asteroids[i];
+            
+            // Check for collisions and update the result array
+            while (j > 0 && asteroids[j - 1] > 0 && asteroid < 0 && asteroids[j - 1] < Math.abs(asteroid)) {
+                j--;
             }
-            i--; // Move to the previous digit
+            // Handle different cases based on collision conditions
+            if (j == 0 || asteroid > 0 || asteroids[j - 1] < 0) {
+                asteroids[j++] = asteroid;
+            } else if (asteroids[j - 1] == Math.abs(asteroid)) {
+                j--;
+            }
         }
-        return ""; // Return an empty string if no odd digit is found
+        // Create the final result array with valid elements
+        int[] result = new int[j];
+        System.arraycopy(asteroids, 0, result, 0, j);
+
+        return result;
     }
 
-
     public static void main(String[] args) {
+        int[] asteroids = { 10,2,-5 };
+        // int[] asteroids = { 5,10,-5 };
 
-        String num = "4206";
-
-        System.out.println( largestOddNumber(num) );
-
+        System.out.println( asteroidCollision(asteroids) );
     }
 }

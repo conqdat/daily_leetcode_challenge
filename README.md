@@ -1,3 +1,3 @@
 # Daily Leetcode Challenge
 
-[1903. Largest Odd Number in String](https://leetcode.com/problems/largest-odd-number-in-string/).
+[735. Asteroid Collision](https://leetcode.com/problems/asteroid-collision).
