@@ -47,14 +47,44 @@ class Solution {
         return result;
     }
 
+    public static String isBalanced(String s) {
+        Map<Character, Character> map = new HashMap<>();
+        map.put('}', '{');
+        map.put(')', '(');
+        map.put(']', '[');
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char currentChar = s.charAt(i);
+
+            if (map.containsValue(currentChar)) {
+                stack.push(currentChar);
+            } else if (map.containsKey(currentChar)) {
+                // Check if the stack is empty before calling peek
+                if (!stack.isEmpty() && map.get(currentChar) == stack.peek()) {
+                    stack.pop();
+                } else {
+                    // Mismatch found, return "NO"
+                    return "NO";
+                }
+            }
+        }
+
+        // Check if the stack is empty at the end
+        return stack.isEmpty() ? "YES" : "NO";
+    }
+
+
     public static void main(String[] args) {
         
-        List<Integer> a = Arrays.asList(5,6,7);
-        List<Integer> b = Arrays.asList(3,6,10);
+        // List<Integer> a = Arrays.asList(5,6,7);
+        // List<Integer> b = Arrays.asList(3,6,10);
 
+        String s = "{(([])[])[]]}";
 
         System.out.println(
-            compareTriplets(a, b)
+            isBalanced(s)
         );
     }
 }
