@@ -27,10 +27,34 @@ class Solution {
         return result;
     }
 
-    public static void main(String[] args) {
-        int[] asteroids = { 10,2,-5 };
-        // int[] asteroids = { 5,10,-5 };
+    public static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+        List<Integer> result = new ArrayList<>();
+        int aPoint = 0;
+        int bPoint = 0;
 
-        System.out.println( asteroidCollision(asteroids) );
+        for(int i = 0; i < a.size(); i++) {
+            if(a.get(i) > b.get(i)) {
+                aPoint++;
+            }
+            if(a.get(i) < b.get(i)) {
+                bPoint++;
+            }
+        }
+
+        result.add(aPoint);
+        result.add(bPoint);
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        
+        List<Integer> a = Arrays.asList(5,6,7);
+        List<Integer> b = Arrays.asList(3,6,10);
+
+
+        System.out.println(
+            compareTriplets(a, b)
+        );
     }
 }
