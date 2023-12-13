@@ -1,4 +1,3 @@
 # Daily Leetcode Challenge
 
-[735. Asteroid Collision](https://leetcode.com/problems/asteroid-collision).
-[Compare The Triplets](https://www.hackerrank.com/challenges/compare-the-triplets).
+[921. Minimum Add to Make Parentheses Valid](https://leetcode.com/problems/minimum-add-to-make-parentheses-valid).
