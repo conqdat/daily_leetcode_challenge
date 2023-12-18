@@ -20,27 +20,22 @@ class Solution {
         return Math.max(stack.size(), count);
     }
 
+    public static int maxProductDifference(int[] nums) {
+        int result = 0;
 
+        Arrays.sort(nums);
+
+        System.out.println( Arrays.toString(nums) );
+
+        result = (nums[nums.length - 1] * nums[nums.length - 2]) - (nums[0] * nums[1]);
+        return result;
+    }
 
     public static void main(String[] args) {
-        // String s = "())";
-        // System.out.println( minAddToMakeValid(s) );
 
-        int[] nums = {1,2,3,4,4,45,54,1};
-        int a = 0, b = 0, c = 0;
+        int[] nums = { 4,2,5,9,7,4,8 };
 
-        for(int i = 0; i < nums.length; i++) {
-            b = nums[i];
-            System.out.println("b : "+ b);
-            i++;
-        }
-
-        System.out.println("==============");
-
-        for(int i = 0; i < nums.length; i++) {
-            c = nums[i++];
-            System.out.println("c : "+ c);
-        }
+        System.out.println( maxProductDifference(nums) );
 
     }
 }
