@@ -21,14 +21,26 @@ class Solution {
     }
 
     public static int maxProductDifference(int[] nums) {
-        int result = 0;
-
-        Arrays.sort(nums);
-
-        System.out.println( Arrays.toString(nums) );
-
-        result = (nums[nums.length - 1] * nums[nums.length - 2]) - (nums[0] * nums[1]);
-        return result;
+        int maxOne = Integer.MIN_VALUE, maxTwo = Integer.MIN_VALUE;
+        int minOne = Integer.MAX_VALUE, minTwo = Integer.MAX_VALUE;
+    
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > maxOne) {
+                maxTwo = maxOne;
+                maxOne = nums[i];
+            } else if (nums[i] > maxTwo) {
+                maxTwo = nums[i];
+            }
+    
+            if (nums[i] < minOne) {
+                minTwo = minOne;
+                minOne = nums[i];
+            } else if (nums[i] < minTwo) {
+                minTwo = nums[i];
+            }
+        }
+    
+        return (maxOne * maxTwo) - (minOne * minTwo);
     }
 
     public static void main(String[] args) {
