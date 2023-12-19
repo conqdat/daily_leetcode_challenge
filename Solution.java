@@ -20,13 +20,30 @@ class Solution {
         return f[n];
     }
 
+
+    public static int climbStairs(int n) {
+        int[] result = new int[n + 1];
+
+        // Edge case
+        if(n == 1) return 1;
+        if(n == 2) return 2;
+        if(n == 3) return 3;
+
+        result[0] = 0;
+        result[1] = 1;
+        result[2] = 2;
+        result[3] = 3;
+
+        for(int i = 4; i <= n; i++) {
+            result[i] = result[i - 1] + result[i - 2];
+        }
+        return result[n];
+    }
+
     public static void main(String[] args) {
-        int n = 25;
+        int n = 10;
 
-        System.out.println( tribonacci(n) );
-
-
-
+        System.out.println( climbStairs(n) );
 
     }
 }
