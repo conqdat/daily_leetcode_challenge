@@ -1,12 +1,3 @@
 # Daily Leetcode Challenge
 
-[921. Minimum Add to Make Parentheses Valid](https://leetcode.com/problems/minimum-add-to-make-parentheses-valid).
-
-b = a[i];
-i++
-
-b = a[i++];
-
-```
-
-```
+[1137. N-th Tribonacci Number](https://leetcode.com/problems/n-th-tribonacci-number/description).

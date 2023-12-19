@@ -2,52 +2,31 @@ import java.util.*;
 
 class Solution {
 
-
-    public static int minAddToMakeValid(String s) {
-        int count = 0;
-        Stack<Character> stack = new Stack<>();
-
-        for(int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) == '(') {
-                stack.push(s.charAt(i));
-            }
-            else if(stack.size() != 0) {
-                stack.pop();
-            } else {
-                count ++;
-            }
-        }
-        return Math.max(stack.size(), count);
+    public static int fibo(int n) {
+        if (n <= 1) return n;
+        return fibo(n - 1) + fibo(n - 2);
     }
 
-    public static int maxProductDifference(int[] nums) {
-        int maxOne = Integer.MIN_VALUE, maxTwo = Integer.MIN_VALUE;
-        int minOne = Integer.MAX_VALUE, minTwo = Integer.MAX_VALUE;
-    
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > maxOne) {
-                maxTwo = maxOne;
-                maxOne = nums[i];
-            } else if (nums[i] > maxTwo) {
-                maxTwo = nums[i];
-            }
-    
-            if (nums[i] < minOne) {
-                minTwo = minOne;
-                minOne = nums[i];
-            } else if (nums[i] < minTwo) {
-                minTwo = nums[i];
-            }
+    public static int tribonacci(int n) {
+        int[] f = new int[n+1];
+        
+        f[0] = 0;
+        f[1] = 1;
+        f[2] = 1;
+
+        for(int i = 3; i <= n; i ++) {
+            f[i] = f[i - 1] + f[i - 2] + f[i - 3];
         }
-    
-        return (maxOne * maxTwo) - (minOne * minTwo);
+        return f[n];
     }
 
     public static void main(String[] args) {
+        int n = 25;
 
-        int[] nums = { 4,2,5,9,7,4,8 };
+        System.out.println( tribonacci(n) );
 
-        System.out.println( maxProductDifference(nums) );
+
+
 
     }
 }
