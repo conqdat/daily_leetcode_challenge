@@ -24,10 +24,12 @@ class Solution {
         return result;
     }
 
-    public static void main(String[] args) {
-        String colors = "aabaa";
-        int[] neededTime = {1, 2, 3, 4, 1};
+    public static int myPow(int x, int n) {
+        return x << n - 1;
+    }
 
-        System.out.println(minCost(colors, neededTime));
+    public static void main(String[] args) {
+
+        System.out.println( myPow(2, 9) );
     }
 }
