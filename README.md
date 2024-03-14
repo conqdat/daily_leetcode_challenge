@@ -1,4 +1,3 @@
 # Daily Leetcode Challenge
 
-[1137. N-th Tribonacci Number](https://leetcode.com/problems/n-th-tribonacci-number/description).
-[70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/).
+[930. Binary Subarrays With Sum](https://leetcode.com/problems/binary-subarrays-with-sum/).
