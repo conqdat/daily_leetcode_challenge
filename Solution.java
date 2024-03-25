@@ -2,23 +2,23 @@ import java.util.*;
 
 class Solution {
 
-    public int numSubarraysWithSum(int[] nums, int goal) {
-        return atMost(nums, goal) - atMost(nums, goal - 1);
-    }
-    private int atMost(int[] nums, int goal) {
-        int head, tail = 0, sum = 0, result = 0;
-        for (head = 0; head < nums.length; head++) {
-            sum += nums[head];
-            while (sum > goal && tail <= head) {
-                sum -= nums[tail];
-                tail++;
+    public static List<Integer> findDuplicates(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+
+        for(int i = 0; i < nums.length; i++) {
+            int index = Math.abs(nums[i]) - 1;
+            if (nums[index] < 0) {
+                res.add(Math.abs(nums[i]));
+            } else {
+                nums[index] = -nums[index];
             }
-            result += head - tail + 1;
         }
-        return result;
+        return res;
     }
 
     public static void main(String[] args) {
+        int nums[] = { 4, 3, 2, 7, 8, 2, 3, 1 };
 
+        System.out.println(findDuplicates(nums));
     }
 }

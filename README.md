@@ -1,3 +1,3 @@
 # Daily Leetcode Challenge
 
-[930. Binary Subarrays With Sum](https://leetcode.com/problems/binary-subarrays-with-sum/).
+[442. Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array).
