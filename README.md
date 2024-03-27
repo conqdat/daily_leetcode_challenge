@@ -1,3 +1,3 @@
 # Daily Leetcode Challenge
 
-[442. Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array).
+[713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k).

@@ -2,23 +2,29 @@ import java.util.*;
 
 class Solution {
 
-    public static List<Integer> findDuplicates(int[] nums) {
-        List<Integer> res = new ArrayList<>();
+    public static int numSubarrayProductLessThanK(int[] nums, int k) {
+        if(k <= 1) return 0;
 
-        for(int i = 0; i < nums.length; i++) {
-            int index = Math.abs(nums[i]) - 1;
-            if (nums[index] < 0) {
-                res.add(Math.abs(nums[i]));
-            } else {
-                nums[index] = -nums[index];
+        int left = 0;
+        int product = 1;
+        int count = 0;
+
+        for(int right = 0; right < nums.length; right++) {
+            product *= nums[right];
+            while(product >= k) {
+                product = product / nums[left];
+                left++;
             }
+            count += right - left + 1; 
         }
-        return res;
+        return count;
     }
 
     public static void main(String[] args) {
-        int nums[] = { 4, 3, 2, 7, 8, 2, 3, 1 };
+        int nums[] = { 10,5,2,6 };
+        int k = 100;
 
-        System.out.println(findDuplicates(nums));
+        System.out.println( numSubarrayProductLessThanK(nums, k) );
+
     }
 }
